@@ -13,3 +13,4 @@ to-do
 - [x] win
 - [x] canvas class
 - [ ] learn git
+- [ ] add something to the todo list
