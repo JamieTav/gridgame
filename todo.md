@@ -12,3 +12,4 @@ to-do
 - [x] coin
 - [x] win
 - [x] canvas class
+- [ ] learn git
