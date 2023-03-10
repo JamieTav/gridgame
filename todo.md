@@ -11,4 +11,4 @@ to-do
 - [x] vertical enemy
 - [x] coin
 - [x] win
-- [ ] canvas class
+- [x] canvas class
