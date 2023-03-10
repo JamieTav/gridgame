@@ -12,6 +12,6 @@ to-do
 - [x] coin
 - [x] win
 - [x] canvas class
-- [ ] learn git
+- [x] learn git
 - [x] add something to the todo list
 - [ ] add something else to the todo list
