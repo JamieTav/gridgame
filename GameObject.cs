@@ -1,6 +1,6 @@
 class GameObject {
     public Vector2 position = new Vector2(); 
-    public ColorCharacter c = new ColorCharacter();
+    public ColorCharacter character = new ColorCharacter();
     public Vector2 velocity = new Vector2();
     
     public void Update() {
