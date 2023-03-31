@@ -3,7 +3,7 @@ class GameObject {
     public ColorCharacter character = new ColorCharacter();
     public Vector2 velocity = new Vector2();
     
-    public void Update() {
+    public virtual void Update() {
         position.Add(velocity);
 
         if (position.x > Constants.width-2) {

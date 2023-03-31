@@ -202,6 +202,7 @@ internal class Program
                 y = -1
             }
         });
+        
         for (int v = 10; v < 40; v++)
         {
             enemies.Add(new GameObject()
@@ -239,7 +240,7 @@ internal class Program
             velocity = new Vector2()
         };
 
-        var player = new GameObject()
+        var player = new Player()
         {
             position = new Vector2()
             {
@@ -253,35 +254,30 @@ internal class Program
             },
         };
 
+        var follower = new Follower()
+        {
+            position = new Vector2()
+            {
+                x = 40,
+                y = 5
+            },
+            character = new ColorCharacter()
+            {
+                c = 'F',
+                fg = ConsoleColor.DarkBlue
+            },
+            following = player
+        };
+
         gameobjects.Add(player);
         gameobjects.Add(coin);
         gameobjects.AddRange(enemies);
+        gameobjects.Add(follower);
 
         //game starts
         var gameOver = false;
         while (!gameOver)
         {
-
-            player.velocity = new Vector2();
-
-            if (Keyboard.IsKeyDown(Key.W) || Keyboard.IsKeyDown(Key.Up))
-            {
-                player.velocity.y = -1;
-            }
-            else if (Keyboard.IsKeyDown(Key.A) || Keyboard.IsKeyDown(Key.Left))
-            {
-                player.velocity.x = -1;
-            }
-            else if (Keyboard.IsKeyDown(Key.S) || Keyboard.IsKeyDown(Key.Down))
-            {
-                player.velocity.y = 1;
-            }
-            else if (Keyboard.IsKeyDown(Key.D) || Keyboard.IsKeyDown(Key.Right))
-            {
-                player.velocity.x = 1;
-            }
-
-            
             //game over
             for (int h = 0; h < enemies.Count; h++)
             {
