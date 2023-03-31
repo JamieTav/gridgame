@@ -6,9 +6,15 @@ class Canvas {
     }
 
     public void Draw(GameObject go) {
-        consoleCanvas.Draw(go.character.c, go.position.x, go.position.y, go.character.fg, go.character.bg);
-    }
+        // floor => floor(10.24) = 10    floor(30.3) = 30  floor (28.99999999) = 28
 
+        // (type)object => tries converting the object into the new type
+        var x = (int)MathF.Floor(go.position.x); 
+        var y = (int)MathF.Floor(go.position.y); 
+
+        consoleCanvas.Draw(go.character.c, x, y, go.character.fg, go.character.bg);
+    }
+    
     public void Render(){
        consoleCanvas.Render();
     }

@@ -244,8 +244,8 @@ internal class Program
         {
             position = new Vector2()
             {
-                x = 2,
-                y = 2
+                x = 2.1f,
+                y = 2.1f
             },
             character = new ColorCharacter()
             {

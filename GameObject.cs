@@ -24,7 +24,7 @@ class GameObject {
     }
 
     public bool CollidesWith(GameObject other) {
-        return position.Equals(other.position);
+        return MathF.Floor(position.x) == MathF.Floor(other.position.x) && MathF.Floor(position.y) == MathF.Floor(other.position.y);
     }
 }
 
