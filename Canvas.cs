@@ -12,7 +12,18 @@ class Canvas {
         var x = (int)MathF.Floor(go.position.x); 
         var y = (int)MathF.Floor(go.position.y); 
 
-        consoleCanvas.Draw(go.character.c, x, y, go.character.fg, go.character.bg);
+        if(go.sprite != null && go.sprite.texture !=null){
+            for (int v = 0; v < go.sprite.texture.GetLength(0); v++)
+            {
+                for (int u = 0; u < go.sprite.texture.GetLength(1); u++){
+                    var cc = go.sprite.texture[v,u];
+                    consoleCanvas.Draw(cc.c, x+u, y+v, cc.fg, cc.bg);
+                }
+            }
+        }
+        else if(go.character!=null){
+            consoleCanvas.Draw(go.character.c, x, y, go.character.fg, go.character.bg);
+        }
     }
     
     public void Render(){

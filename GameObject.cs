@@ -1,6 +1,7 @@
 class GameObject {
     public Vector2 position = new Vector2(); 
     public ColorCharacter character = new ColorCharacter();
+    public Sprite sprite = new Sprite();
     public Vector2 velocity = new Vector2();
     
     public virtual void Update() {

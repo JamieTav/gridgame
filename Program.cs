@@ -247,10 +247,47 @@ internal class Program
                 x = 2.1f,
                 y = 2.1f
             },
-            character = new ColorCharacter()
+            sprite = new Sprite()
             {
-                c = '☺',
-                fg = ConsoleColor.DarkGreen
+                texture = new ColorCharacter[,]{
+                    {
+                        new ColorCharacter(){
+                            c= ' '
+                        },
+                        new ColorCharacter(){
+                            c= 'ㅇ',
+                            fg= ConsoleColor.DarkGreen
+                        },
+                        new ColorCharacter(){
+                            c = ' '
+                        }
+                    },
+                    {
+                        new ColorCharacter(){
+                            c = ' '
+                        },
+                        new ColorCharacter(){
+                            c= '|',
+                            fg = ConsoleColor.DarkGreen
+                        },
+                        new ColorCharacter(){
+                            c = ' '
+                        }
+                    },
+                    {
+                        new ColorCharacter(){
+                            c = ' '
+                        },
+                        new ColorCharacter(){
+                            c = 'ㅅ',
+                            fg = ConsoleColor.DarkGreen
+                        },
+                        new ColorCharacter(){
+                            c = ' '
+                        }
+                    }
+                },
+
             },
         };
 
