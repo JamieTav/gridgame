@@ -5,7 +5,7 @@ class Player : GameObject {
     // this is saying that we are replacing what Update originally does
     public override void Update() {
         velocity = new Vector2();
-        float playerSpeed = 0.5f;
+        var playerSpeed = 0.5f;
         if (Keyboard.IsKeyDown(Key.W) || Keyboard.IsKeyDown(Key.Up))
         {
             velocity.y = -playerSpeed;

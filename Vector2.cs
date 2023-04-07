@@ -4,27 +4,27 @@ class Vector2 {
     public float y;
 
     // add (and subtract)
-    public void Add(Vector2 b) {
-        x = x + b.x;
-        y = y + b.y;
+    public Vector2 Add(Vector2 b) {
+        var v = new Vector2();
+        v.x = x + b.x;
+        v.y = y + b.y;
+        return v;
     }
 
     // scale/multiply
-    public void Scale(float s){
-        x = x * s;
-        y = y * s;
+    public Vector2 Scale(float s){
+        var v = new Vector2();
+        v.x = x * s;
+        v.y = y * s;
+        return v;
     }
 
     // definition/signature of a function
-    public void Normalize(){
-        // var direction = 5;
-        // new Vector2(){
-        //     x = direction,
-        //     y = direction
-        // };
-
-        x = x/Magnitude();
-        y = y/Magnitude();
+    public Vector2 Normalize(){
+        var n = new Vector2();
+        n.x = x/Magnitude();
+        n.y = y/Magnitude();
+        return n;
     }
     // public AAA BBB(CCC1 ddd1, CCC2 ddd2);
 
@@ -36,7 +36,12 @@ class Vector2 {
     public float Magnitude(){
         return MathF.Sqrt((x*x)+(y*y));
     }
-
+    public Vector2 Subtract(Vector2 b){
+        var c = new Vector2();
+        c.x = x - b.x;
+        c.y = y - b.y;
+        return c;
+    }
     public bool Equals(Vector2 other) {
         return x == other.x && y == other.y;
     }

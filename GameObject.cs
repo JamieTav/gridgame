@@ -4,7 +4,7 @@ class GameObject {
     public Vector2 velocity = new Vector2();
     
     public virtual void Update() {
-        position.Add(velocity);
+        position = position.Add(velocity);
 
         if (position.x > Constants.width-2) {
             position.x = 1;

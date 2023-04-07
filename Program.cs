@@ -256,6 +256,7 @@ internal class Program
 
         var follower = new Follower()
         {
+            speed = 0.3f,
             position = new Vector2()
             {
                 x = 40,
