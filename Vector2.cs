@@ -3,6 +3,17 @@ class Vector2 {
     public float x;
     public float y;
 
+    // constructors
+    public Vector2() {
+        this.x = 0;
+        this.y = 0;
+    }
+    
+    public Vector2(float x, float y) {
+        this.x = x;
+        this.y = y;
+    }
+
     // add (and subtract)
     public Vector2 Add(Vector2 b) {
         var v = new Vector2();

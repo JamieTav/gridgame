@@ -24,267 +24,102 @@ internal class Program
 
         enemies.Add(new GameObject()
         {
-            position = new Vector2()
-            {
-                x = Constants.width - 2,
-                y = 1
-            },
-            character = new ColorCharacter()
-            {
-                c = '1',
-                fg = ConsoleColor.DarkRed
-            },
-            velocity = new Vector2()
-            {
-                x = 2,
-                y = 0
-            }
+            position = new Vector2(Constants.width - 2, 1),
+            character = new ColorCharacter('1', ConsoleColor.DarkRed),
+            velocity = new Vector2(2, 0),
         });
         enemies.Add(new GameObject()
         {
-            position = new Vector2()
-            {
-                x = Constants.width - 2,
-                y = Constants.height - 3
-            },
-            character = new ColorCharacter()
-            {
-                c = '2',
-                fg = ConsoleColor.DarkRed
-            },
-            velocity = new Vector2()
-            {
-                x = -2,
-                y = 0
-            }
+            position = new Vector2(Constants.width - 2, Constants.height - 3),
+            character = new ColorCharacter('2', ConsoleColor.DarkRed),
+            velocity = new Vector2(-2, 0),
         });
         enemies.Add(new GameObject()
         {
-            position = new Vector2()
-            {
-                x = 5,
-                y = Constants.height - 3
-            },
-            character = new ColorCharacter()
-            {
-                c = '3',
-                fg = ConsoleColor.DarkRed
-            },
-            velocity = new Vector2()
-            {
-                x = 0,
-                y = 2
-            }
+            position = new Vector2(5, Constants.height - 3),
+            character = new ColorCharacter('3', ConsoleColor.DarkRed),
+            velocity = new Vector2(0, 2),
         });
         enemies.Add(new GameObject()
         {
-            position = new Vector2()
-            {
-                y = 1,
-                x = Constants.width - 2
-            },
-            character = new ColorCharacter()
-            {
-                c = '4',
-                fg = ConsoleColor.DarkRed
-            },
-            velocity = new Vector2()
-            {
-                x = 0,
-                y = -2
-            }
+            position = new Vector2(1, Constants.width - 2),
+            character = new ColorCharacter('4', ConsoleColor.DarkRed),
+            velocity = new Vector2(0, -2),
         });
         enemies.Add(new GameObject()
         {
-            position = new Vector2()
-            {
-                x = 1,
-                y = 1
-            },
-            character = new ColorCharacter()
-            {
-                c = '5',
-                fg = ConsoleColor.DarkRed
-            },
-            velocity = new Vector2()
-            {
-                x = 2,
-                y = 2
-            }
+            position = new Vector2(1, 1),
+            character = new ColorCharacter('5', ConsoleColor.DarkRed),
+            velocity = new Vector2(2, 2),
         });
         enemies.Add(new GameObject()
         {
-            position = new Vector2()
-            {
-                y = Constants.height - 3,
-                x = 1
-            },
-            character = new ColorCharacter()
-            {
-                c = '6',
-                fg = ConsoleColor.DarkRed
-            },
-            velocity = new Vector2()
-            {
-                x = 4,
-                y = -4
-            }
+            position = new Vector2(1, Constants.height - 3),
+            character = new ColorCharacter('6', ConsoleColor.DarkRed),
+            velocity = new Vector2(4, -4),
         });
         enemies.Add(new GameObject()
         {
-            position = new Vector2()
-            {
-                y = Constants.height / 2,
-                x = 7
-            },
-            character = new ColorCharacter()
-            {
-                c = '7',
-                fg = ConsoleColor.DarkRed
-            },
-            velocity = new Vector2()
-            {
-                x = 4,
-                y = 0
-            }
+            position = new Vector2(7, Constants.height / 2),
+            character = new ColorCharacter('7',ConsoleColor.DarkRed),
+            velocity = new Vector2(4, 0),
         });
         enemies.Add(new GameObject()
         {
-            position = new Vector2()
-            {
-                x = Constants.width / 2,
-                y = 7
-            },
-            character = new ColorCharacter()
-            {
-                c = '8',
-                fg = ConsoleColor.DarkRed
-            },
-            velocity = new Vector2()
-            {
-                x = -4,
-                y = 0
-            }
+            position = new Vector2(Constants.width / 2, 7),
+            character = new ColorCharacter('8', ConsoleColor.DarkRed),
+            velocity = new Vector2(-4, 0),
         });
         enemies.Add(new GameObject()
         {
-            position = new Vector2()
-            {
-                y = 12,
-                x = 8
-            },
-            character = new ColorCharacter()
-            {
-                c = '9',
-                fg = ConsoleColor.DarkRed
-            },
-            velocity = new Vector2()
-            {
-                x = 0,
-                y = 1,
-            }
+            position = new Vector2(8, 12),
+            character = new ColorCharacter('9', ConsoleColor.DarkRed),
+            velocity = new Vector2(0, 1),
         });
         enemies.Add(new GameObject()
         {
-            position = new Vector2()
-            {
-                x = 60,
-                y = 1,
-            },
-            character = new ColorCharacter()
-            {
-                c = '0',
-                fg = ConsoleColor.DarkRed
-            },
-            velocity = new Vector2()
-            {
-                x = 0,
-                y = -1
-            }
+            position = new Vector2(60, 1),
+            character = new ColorCharacter('0', ConsoleColor.DarkRed),
+            velocity = new Vector2(0, -1),
         });
         
         for (int v = 10; v < 40; v++)
         {
             enemies.Add(new GameObject()
             {
-                position = new Vector2()
-                {
-                    x = 1 + v * 2,
-                    y = Constants.height - 3
-                },
-                character = new ColorCharacter()
-                {
-                    c = 'v',
-                    fg = ConsoleColor.DarkRed
-                },
-                velocity = new Vector2()
-                {
-                    x = 0,
-                    y = -1
-                }
+                position = new Vector2(1 + v * 2, Constants.height - 3),
+                character = new ColorCharacter('v', ConsoleColor.DarkRed),
+                velocity = new Vector2(0, -1)
             });
         }
 
         var coin = new GameObject()
         {
-            position = new Vector2()
-            {
-                x = Constants.width / 2,
-                y = Constants.height / 2
-            },
-            character = new ColorCharacter()
-            {
-                c = 'o',
-                fg = ConsoleColor.DarkYellow
-            },
+            position = new Vector2(Constants.width / 2, Constants.height / 2),
+            character = new ColorCharacter('o', ConsoleColor.DarkYellow),
             velocity = new Vector2()
         };
 
         var player = new Player()
         {
-            position = new Vector2()
-            {
-                x = 2.1f,
-                y = 2.1f
-            },
+            position = new Vector2(2.1f, 2.1f),
             sprite = new Sprite()
             {
                 texture = new ColorCharacter[,]{
                     {
-                        new ColorCharacter(){
-                            c= ' '
-                        },
-                        new ColorCharacter(){
-                            c= 'ㅇ',
-                            fg= ConsoleColor.DarkGreen
-                        },
-                        new ColorCharacter(){
-                            c = ' '
-                        }
+                        new ColorCharacter(),
+                        new ColorCharacter('ㅇ', ConsoleColor.DarkGreen),
+                        new ColorCharacter()
                     },
                     {
-                        new ColorCharacter(){
-                            c = ' '
-                        },
-                        new ColorCharacter(){
-                            c= '|',
-                            fg = ConsoleColor.DarkGreen
-                        },
-                        new ColorCharacter(){
-                            c = ' '
-                        }
+                        new ColorCharacter(),
+                        new ColorCharacter('|', ConsoleColor.DarkGreen),
+                        new ColorCharacter()
                     },
                     {
-                        new ColorCharacter(){
-                            c = ' '
-                        },
-                        new ColorCharacter(){
-                            c = 'ㅅ',
-                            fg = ConsoleColor.DarkGreen
-                        },
-                        new ColorCharacter(){
-                            c = ' '
-                        }
+                        new ColorCharacter(),
+                        new ColorCharacter('ㅅ', ConsoleColor.DarkGreen),
+                        new ColorCharacter()
                     }
                 },
 
@@ -294,16 +129,8 @@ internal class Program
         var follower = new Follower()
         {
             speed = 0.3f,
-            position = new Vector2()
-            {
-                x = 40,
-                y = 5
-            },
-            character = new ColorCharacter()
-            {
-                c = 'F',
-                fg = ConsoleColor.DarkBlue
-            },
+            position = new Vector2(40, 5),
+            character = new ColorCharacter('F', ConsoleColor.DarkBlue),
             following = player
         };
 
