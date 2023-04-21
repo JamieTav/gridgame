@@ -69,7 +69,8 @@ internal class Program
             // for(int h=0; h<gameobjects.Count; h++){
             //     canvas.Set(gameobjects[h]);
             // }
-            foreach (var go in scene.gameObjects)
+           
+            foreach (var go in scene.gameObjects.OrderBy(go => go.depth))
             {
                 canvas.Draw(go);
             }
@@ -82,4 +83,6 @@ internal class Program
             Thread.Sleep(1000 / 10);
         }
     }
+
+    
 }

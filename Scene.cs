@@ -67,7 +67,7 @@ class Scene {
             position = new Vector2(40, 5),
             sprite = new Sprite("Follower.spr"),
             Following = player,
-            scene = this
+            scene = this,
         };
 
         gameObjects.Add(player);

@@ -3,7 +3,7 @@ class GameObject {
     public ColorCharacter character = new ColorCharacter();
     public Sprite sprite = null ;
     public Vector2 velocity = new Vector2();
-    
+    public float depth = 0f;
     
     public virtual void Update() {
         position = position.Add(velocity);

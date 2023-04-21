@@ -22,6 +22,7 @@ class Follower : GameObject {
             var caca = new GameObject(){
                 sprite = (cacaSprite),
                 position = this.position.Subtract(displacement),
+                depth = -1,
             };
             scene.ToCreate.Add(caca);
             Cacas.Add(caca);
