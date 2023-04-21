@@ -4,6 +4,7 @@ class GameObject {
     public Sprite sprite = null ;
     public Vector2 velocity = new Vector2();
     
+    
     public virtual void Update() {
         position = position.Add(velocity);
 

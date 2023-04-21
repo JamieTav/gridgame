@@ -2,120 +2,65 @@
 using System.Windows.Input;
 
 internal class Program
-{
+{ 
+    
     [STAThread]
     private static void Main()
     {
         var rng = new Random();
         var canvas = new Canvas();
-
-        //initialize game state
-        int coinsCollected = 0;
-        int coinGoal = 3;
-        int lives = 3;
-
-        Console.WriteLine($"Coins Collected: {coinsCollected}/{coinGoal}");
-        Console.WriteLine($"Lives: {lives}");
-        Console.WriteLine();
-
-        //create all game objects
-        var swordSprite = new Sprite("Sword.spr");
-        var gunSprite = new Sprite("Gun.spr");
-        var knifeSprite = new Sprite("Knife.spr");
-        var gameObjects = new List<GameObject>();
-        var enemies = new List<GameObject>();
-
-        enemies.Add(new GameObject()
-        {
-            position = new Vector2(Constants.width - 2, 1),
-            sprite = swordSprite,
-            velocity = new Vector2(2, 0),
-        });
-        enemies.Add(new GameObject()
-        {
-            position = new Vector2(Constants.width - 2, Constants.height - 3),
-            sprite = gunSprite,
-            velocity = new Vector2(-2, 0),
-        });
-        enemies.Add(new GameObject()
-        {
-            position = new Vector2(5, Constants.height - 3),
-            sprite = knifeSprite,
-            velocity = new Vector2(0, 2),
-        });
-      
-        
-        for (int v = 10; v < 40; v++)
-        {
-            enemies.Add(new GameObject()
-            {
-                position = new Vector2(1 + v * 2, Constants.height - 3),
-                character = new ColorCharacter('v', ConsoleColor.DarkRed),
-                velocity = new Vector2(0, -1)
-            });
-        }
-
-        var coin = new GameObject()
-        {
-            position = new Vector2(Constants.width / 2, Constants.height / 2),
-            sprite = new Sprite("Coin.spr")
-        };
-
-        var player = new Player()
-        {
-            position = new Vector2(2.1f, 2.1f),
-            sprite = new Sprite("Player.spr")
-         };
-
-
-        var follower = new Follower()
-        {
-            speed = 0.3f,
-            position = new Vector2(40, 5),
-            sprite = new Sprite("Follower.spr"),
-            following = player
-        };
-
-        gameObjects.Add(player);
-        gameObjects.Add(coin);
-        gameObjects.AddRange(enemies);
-        gameObjects.Add(follower);
+        var scene = new Scene();
 
         //game starts
-        var gameOver = false;
-        while (!gameOver)
+        var isGameRunning = true;
+        while (isGameRunning)
         {
             //game over
-            for (int h = 0; h < enemies.Count; h++)
+            for (int h = 0; h < scene.Enemies.Count; h++)
             {
-                if (player.CollidesWith(enemies[h]))
+                if (scene.player.CollidesWith(scene.Enemies[h]))
                 {
-                    lives = lives - 1;
+                    scene.lives = scene.lives - 1;
                 }
             }
-            if (lives == 0)
+
+            if (scene.lives == 0 && scene.gameOver == false)
             {
-                Console.Write("GAME OVER LOSER!!!!!");
-                gameOver = true;
+                var gameOverText = new GameObject(){
+                    position = new Vector2(Constants.width/2,0),
+                    sprite = new Sprite("GameOver.spr")
+                };
+                scene.gameObjects.Add(gameOverText);
+                scene.gameOver = true;
             }
 
-            if (player.CollidesWith(coin))
+            if (scene.player.CollidesWith(scene.coin))
             {
-                coin.position.x = rng.Next(1, Constants.width - 1);
-                coin.position.y = rng.Next(1, Constants.height - 2);
-                coinsCollected = coinsCollected + 1;
+                scene.coin.position.x = rng.Next(1, Constants.width - 1);
+                scene.coin.position.y = rng.Next(1, Constants.height - 2);
+                scene.coinsCollected = scene.coinsCollected + 1;
             }
 
-            if (coinsCollected == coinGoal)
+            if (scene.coinsCollected == scene.coinGoal && scene.gameOver == false)
             {
-                Console.Write("YYYYYIIIIIIIIIIIIIIIIPPPPPPPPPPPPPEEEEEEEEEEEEEEEEEE!!!!!!!!!!!!");
-                gameOver = true;
+                var gameWinText = new GameObject(){
+                    position = new Vector2(Constants.width/2,0),
+                    sprite = new Sprite("GameWin.spr")
+                };
+                scene.gameObjects.Add(gameWinText);
+                scene.gameOver = true;
+            }
+
+            if (Keyboard.IsKeyDown(Key.R) && scene.gameOver==true){
+                scene = new Scene();
             }
 
             // update all game objects
-            foreach (var go in gameObjects)
-            {
-                go.Update();
+            if (!scene.gameOver){
+                foreach (var go in scene.gameObjects)
+                {
+                    go.Update();
+                }
             }
 
             //draw the canvas
@@ -124,11 +69,13 @@ internal class Program
             // for(int h=0; h<gameobjects.Count; h++){
             //     canvas.Set(gameobjects[h]);
             // }
-            foreach (var go in gameObjects)
+            foreach (var go in scene.gameObjects)
             {
                 canvas.Draw(go);
             }
 
+            scene.gameObjects.AddRange(scene.ToCreate);
+            scene.ToCreate.Clear();
             canvas.Render();
 
 
