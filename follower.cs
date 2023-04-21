@@ -9,15 +9,17 @@ class Follower : GameObject {
     int cacaRate = 120;
     Vector2 displacement = new Vector2(1,1);
     Sprite cacaSprite = new Sprite("caca.spr");
-
-    
+    Vector2 followOffset = new Vector2(-3,1);
 
     public override void Update() {
         // given the players position, change velocity
-        var displace = Following.position.Subtract(position);
+        var target = Following.position.Add(followOffset);
+        var displace = target.Subtract(position);
         var dir = displace.Normalize();
-        velocity = dir.Scale(Speed);
-        frames = frames +1;
+        var currentSpeed = MathF.Min(Speed, displace.Magnitude());
+        velocity = dir.Scale(currentSpeed);
+        // poop stuff
+        frames = frames + 1;
         if (frames == cacaRate){
             var caca = new GameObject(){
                 sprite = (cacaSprite),

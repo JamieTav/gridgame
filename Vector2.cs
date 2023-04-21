@@ -32,9 +32,15 @@ class Vector2 {
 
     // definition/signature of a function
     public Vector2 Normalize(){
-        var n = new Vector2();
-        n.x = x/Magnitude();
-        n.y = y/Magnitude();
+        var n = new Vector2(0, 0);
+        var mag = Magnitude();
+        
+        if (mag == 0) {
+            return n;
+        }
+
+        n.x = x/mag;
+        n.y = y/mag;
         return n;
     }
     // public AAA BBB(CCC1 ddd1, CCC2 ddd2);
