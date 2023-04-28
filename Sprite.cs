@@ -2,9 +2,12 @@ using System.IO;
 
 class Sprite {
     public ColorCharacter[,] texture;
+    public int Width;
+    public int Height;
+
     public Sprite(string file){
-        var w = 0;
-        var h = 0;
+        Width = 0;
+        Height = 0;
         var lines = File.ReadLines($"./sprites/{file}"); 
 
         // ConsoleColor.Parse()
@@ -21,18 +24,18 @@ class Sprite {
         // find the size of the texture
         foreach (string line in lines.Skip(2)){
             var tw = 0;
-            h = h+1;
+            Height = Height+1;
             // line
             foreach (var character in line){
                 tw = tw+1;
             }
-            if (tw > w){
-                w = tw;
+            if (tw > Width){
+                Width = tw;
             }
         }
 
         // create the texture
-        texture = new ColorCharacter[h,w];
+        texture = new ColorCharacter[Height,Width];
 
         // populate the texture with the file information
         // h = 4, w =  10
@@ -41,8 +44,8 @@ class Sprite {
         // ttt       
         // dd        
 
-        for(var v=0; v < h; v++){
-            for(var u = 0; u < w; u++) {
+        for(var v=0; v < Height; v++){
+            for(var u = 0; u < Width; u++) {
                 var l = lines.ElementAt(v+2);
                 var c = ' ';
                 if (u < l.Length) {

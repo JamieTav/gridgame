@@ -18,27 +18,36 @@ internal class Program
             //game over
             for (int h = 0; h < scene.Enemies.Count; h++)
             {
-                if (scene.player.CollidesWith(scene.Enemies[h]))
+                if (scene.player.CollidesWith(scene.Enemies[h])&& !scene.player.IsInvincible())
                 {
                     scene.lives = scene.lives - 1;
+                    scene.ToDestroy.Add(scene.livesUi[scene.lives]);
+                    scene.player.OnHit();
                 }
             }
 
-            if (scene.lives == 0 && scene.gameOver == false)
+            if (scene.lives <= 0 && scene.gameOver == false)
             {
                 var gameOverText = new GameObject(){
                     position = new Vector2(Constants.width/2,0),
                     sprite = new Sprite("GameOver.spr")
                 };
-                scene.gameObjects.Add(gameOverText);
+                scene.ToCreate.Add(gameOverText);
                 scene.gameOver = true;
             }
 
             if (scene.player.CollidesWith(scene.coin))
             {
+                var x = 40 + 8*scene.coinsCollected;
+                var coinUi = new GameObject(){
+                    sprite = new Sprite("CoinCollected.spr"),
+                    position = new Vector2(x,2)
+                };
                 scene.coin.position.x = rng.Next(1, Constants.width - 1);
                 scene.coin.position.y = rng.Next(1, Constants.height - 2);
                 scene.coinsCollected = scene.coinsCollected + 1;
+                scene.ToCreate.Add(coinUi);
+
             }
 
             if (scene.coinsCollected == scene.coinGoal && scene.gameOver == false)
@@ -47,7 +56,8 @@ internal class Program
                     position = new Vector2(Constants.width/2,0),
                     sprite = new Sprite("GameWin.spr")
                 };
-                scene.gameObjects.Add(gameWinText);
+                
+                scene.ToCreate.Add(gameWinText);
                 scene.gameOver = true;
             }
 
@@ -63,22 +73,19 @@ internal class Program
                 }
             }
 
-            //draw the canvas
-            // canvas.Clear();
+            scene.gameObjects.AddRange(scene.ToCreate);
+            scene.ToCreate.Clear();
+            foreach (var toDestroy in scene.ToDestroy){
+                scene.gameObjects.Remove(toDestroy);
+            }
+            scene.ToDestroy.Clear();  
 
-            // for(int h=0; h<gameobjects.Count; h++){
-            //     canvas.Set(gameobjects[h]);
-            // }
-           
+            // render the canvas           
             foreach (var go in scene.gameObjects.OrderBy(go => go.depth))
             {
                 canvas.Draw(go);
             }
-
-            scene.gameObjects.AddRange(scene.ToCreate);
-            scene.ToCreate.Clear();
-            canvas.Render();
-
+            canvas.Render(); 
 
             Thread.Sleep(1000 / 10);
         }

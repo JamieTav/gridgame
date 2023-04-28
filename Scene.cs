@@ -6,9 +6,11 @@ class Scene {
     public bool gameOver = false;
     public Player player;
     public GameObject coin;
+    public List<GameObject> livesUi = new List<GameObject>();
     public List<GameObject> gameObjects;
     public List<GameObject> Enemies;
     public List<GameObject> ToCreate = new List<GameObject>();
+    public List<GameObject> ToDestroy = new List<GameObject>();
         
     public Scene(){
         // load all sprites
@@ -45,8 +47,18 @@ class Scene {
             velocity = new Vector2(0, 2),
         });
       
-        
 
+        for (var i = 0; i < lives; i++)
+        {
+            livesUi.Add(new GameObject()
+            {
+                sprite = new Sprite("Lives.spr"),
+                position = new Vector2(2+i*8,2)
+            });
+        }
+
+
+        //objects
         coin = new GameObject()
         {
             position = new Vector2(Constants.width / 2, Constants.height / 2),
@@ -55,7 +67,7 @@ class Scene {
 
         player = new Player()
         {
-            position = new Vector2(2.1f, 2.1f),
+            position = new Vector2(10f, 20f),
             sprite = new Sprite("Player.spr"),
             Speed = 1f
          };
@@ -74,6 +86,6 @@ class Scene {
         gameObjects.Add(coin);
         gameObjects.AddRange(Enemies);
         gameObjects.Add(follower);
-        
+        gameObjects.AddRange(livesUi);
     }
 }

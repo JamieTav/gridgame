@@ -26,6 +26,7 @@ class Follower : GameObject {
                 position = this.position.Subtract(displacement),
                 depth = -1,
             };
+            
             scene.ToCreate.Add(caca);
             Cacas.Add(caca);
             frames = 0;

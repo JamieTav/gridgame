@@ -26,7 +26,22 @@ class GameObject {
     }
 
     public bool CollidesWith(GameObject other) {
-        return MathF.Floor(position.x) == MathF.Floor(other.position.x) && MathF.Floor(position.y) == MathF.Floor(other.position.y);
+        if (sprite == null || other.sprite == null || other == null){
+            return false;
+        }
+        if (
+            position.x < other.position.x + other.sprite.Width &&
+            position.x + sprite.Width > other.position.x &&
+            position.y < other.position.y + other.sprite.Height &&
+            sprite.Height + position.y > other.position.y
+        ) {
+            // Collision detected!
+            return true;
+        } else {
+            // No collision
+            return false;
+        }
+    
     }
 }
 

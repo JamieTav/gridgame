@@ -2,6 +2,8 @@ using System.Windows.Input;
 
 class Player : GameObject {
     public float Speed;
+    public int Iframes = 10;
+    int iframecount;
     
     // this is saying that we are replacing what Update originally does
     public override void Update() {
@@ -23,7 +25,17 @@ class Player : GameObject {
             velocity.x = Speed;
         }
 
+        iframecount++;
+
         // call the update code from the base class
         base.Update();
+    }
+
+    public void OnHit() {
+        iframecount = 0;
+    }
+    
+    public bool IsInvincible() {
+        return iframecount < Iframes;
     }
 }
